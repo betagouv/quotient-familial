@@ -2,16 +2,14 @@ package controllers
 
 import javax.inject.Inject
 
-
+import play.api.Logger
+import play.api.libs.concurrent.Execution.Implicits.defaultContext
+import play.api.libs.json._
+import play.api.mvc.{Action, Controller}
 import reactivemongo.core.actors.Exceptions.PrimaryUnavailableException
 import services.UserDao
 
 import scala.concurrent.Future
-
-import play.api.Logger
-import play.api.mvc.{ Action, Controller }
-import play.api.libs.concurrent.Execution.Implicits.defaultContext
-import play.api.libs.json._
 
 
 // BSON-JSON conversions/collection
@@ -34,8 +32,8 @@ import play.api.libs.json._
  * Of course, you can still use the default Collection implementation
  * (BSONCollection.) See ReactiveMongo examples to learn how to use it.
  */
-class Users @Inject() (
-                      val postRepo: UserDao) extends Controller {
+class Users @Inject()(
+                       val postRepo: UserDao) extends Controller {
 
   /*
    * Get a JSONCollection (a Collection implementation that is designed to work
@@ -47,8 +45,9 @@ class Users @Inject() (
   // ------------------------------------------ //
   // Using case classes + JSON Writes and Reads //
   // ------------------------------------------ //
-  import models._
+
   import models.JsonFormats._
+  import models._
 
   def create = Action.async {
     val user = User(29, "John", "Smith", List(
@@ -71,7 +70,7 @@ class Users @Inject() (
       // `user` is an instance of the case class `models.User`
       postRepo.insert(user).map { lastError =>
         Logger.debug(s"Successfully inserted with LastError: $lastError")
-        if(lastError.hasErrors) InternalServerError
+        if (lastError.hasErrors) InternalServerError
         Created(Json.toJson(user))
       }
     }.getOrElse(Future.successful(BadRequest("invalid json")))
@@ -82,7 +81,8 @@ class Users @Inject() (
       .map(users => Ok(Json.toJson(users)))
       .recover {
       case PrimaryUnavailableException => InternalServerError("Please install MongoDB")
-      case _ => InternalServerError("An error has occured")}
+      case _ => InternalServerError("An error has occured")
+    }
   }
 
   def getAll = Action.async {
@@ -90,10 +90,10 @@ class Users @Inject() (
       .map(users => Ok(Json.toJson(users)))
       .recover {
       case PrimaryUnavailableException => InternalServerError("Please install MongoDB")
-      case _ => InternalServerError("An error has occured")}
+      case _ => InternalServerError("An error has occured")
+    }
 
   }
-
 
 
 }
