@@ -4,6 +4,7 @@ import javax.inject.Inject
 
 
 import reactivemongo.core.actors.Exceptions.PrimaryUnavailableException
+import services.UserDao
 
 import scala.concurrent.Future
 
@@ -12,14 +13,6 @@ import play.api.mvc.{ Action, Controller }
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.json._
 
-// Reactive Mongo imports
-import reactivemongo.api.{ReadPreference, Cursor}
-
-import play.modules.reactivemongo.{ // ReactiveMongo Play2 plugin
-MongoController,
-ReactiveMongoApi,
-ReactiveMongoComponents
-}
 
 // BSON-JSON conversions/collection
 
@@ -42,8 +35,7 @@ ReactiveMongoComponents
  * (BSONCollection.) See ReactiveMongo examples to learn how to use it.
  */
 class Users @Inject() (
-                      val reactiveMongoApi: ReactiveMongoApi) extends Controller
-with MongoController with ReactiveMongoComponents {
+                      val postRepo: UserDao) extends Controller {
 
   /*
    * Get a JSONCollection (a Collection implementation that is designed to work
@@ -52,7 +44,6 @@ with MongoController with ReactiveMongoComponents {
    * the collection reference to avoid potential problems in development with
    * Play hot-reloading.
    */
-  def postRepo = new services.UserDao(reactiveMongoApi)
   // ------------------------------------------ //
   // Using case classes + JSON Writes and Reads //
   // ------------------------------------------ //

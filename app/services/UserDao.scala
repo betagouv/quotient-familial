@@ -1,5 +1,7 @@
 package services
 
+import javax.inject.Inject
+
 import models.User
 import models.JsonFormats._
 import reactivemongo.api.ReadPreference
@@ -13,13 +15,11 @@ import play.api.libs.json.Json
 import play.modules.reactivemongo.ReactiveMongoApi
 import play.modules.reactivemongo.json.collection.JSONCollection
 
-import reactivemongo.bson.BSONDocument
 import reactivemongo.api.commands.WriteResult
 
-import play.api.libs.json._
 import play.modules.reactivemongo.json.collection._
 
-class UserDao(reactiveMongoApi: ReactiveMongoApi)  {
+class UserDao @Inject()(reactiveMongoApi: ReactiveMongoApi)  {
   // BSON-JSON conversions
   import play.modules.reactivemongo.json._
   protected def collection =
