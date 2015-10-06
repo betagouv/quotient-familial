@@ -15,3 +15,17 @@ db:
   ports:
     - 28017:27017
 
+front:
+  build: front
+
+
+nginx:
+  build: nginx
+  volumes_from:
+    - front
+  ports:
+    - 80:80
+    - 443:443
+  links:
+    - app:app
+    - front
