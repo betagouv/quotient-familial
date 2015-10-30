@@ -1,4 +1,5 @@
 import javax.inject.Inject
+import scala.util.Properties
 
 import models._
 import models.JsonFormats._
@@ -21,8 +22,10 @@ import play.api.libs.concurrent.Execution.Implicits._
 @RunWith(classOf[JUnitRunner])
 class ApplicationSpec extends PlaySpecification {
 
+  val mongoConnection = Properties.envOrElse("MONGO_CONNECTION_STRING", "mongodb://localhost:27017/sample-test" )
+
   val app = new GuiceApplicationBuilder()
-    .configure(Configuration("mongodb.uri" -> "mongodb://localhost:27017/sample-test"))
+    .configure(Configuration("mongodb.uri" -> mongoConnection))
     .build()
 
   import play.modules.reactivemongo.json._
