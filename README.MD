@@ -1,10 +1,9 @@
-play-sample-app
-===============
+Quotient Familial
+================
 
 This app contains :
 
  * some web services powered by play (in scala)
- * Mongo to store the data
  * Angularjs for the frontend
  * Nginx to serve the static content as well as the API
 
@@ -49,5 +48,3 @@ The different commands are :
 
  * Run front test `cd front && npm test`
  * Run back test `cd back && sbt test`
-
-

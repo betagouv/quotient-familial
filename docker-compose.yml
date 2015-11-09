@@ -24,8 +24,8 @@ nginx:
   volumes_from:
     - front
   ports:
-    - 80:80
-    - 443:443
+    - 8081:80
+    - 4431:443
   links:
     - app:app
     - front
