@@ -1,33 +1,45 @@
-module.exports = function(config){
+var webpackConfig = require('./webpack.test');
+
+// Reference: http://karma-runner.github.io/0.12/config/configuration-file.html
+module.exports = function karmaConfig (config) {
   config.set({
+    frameworks: [ 'jasmine-ajax', 'jasmine'],
 
-    basePath : './',
+    reporters: [
+      // Reference: https://github.com/mlex/karma-spec-reporter
+      // Set reporter to print detailed results to console
+      'spec',
 
-    files : [
-      'app/bower_components/angular/angular.js',
-      'app/bower_components/angular-route/angular-route.js',
-      'app/bower_components/angular-mocks/angular-mocks.js',
-      'app/components/**/*.js',
-      'app/view*/**/*.js'
+      // Reference: https://github.com/karma-runner/karma-coverage
+      // Output code coverage files
+      'coverage'
     ],
 
-    autoWatch : true,
+    files: [
+      // Grab all files in the app folder that contain .test.
+      'src/tests.webpack.js'
+    ],
 
-    frameworks: ['jasmine'],
+    preprocessors: {
+      // Reference: http://webpack.github.io/docs/testing.html
+      // Reference: https://github.com/webpack/karma-webpack
+      // Convert files with webpack and load sourcemaps
+      'src/tests.webpack.js': ['webpack', 'sourcemap']
+    },
 
-    browsers : ['Chrome'],
+    browsers: [
+      // Run tests using PhantomJS
+      'PhantomJS'
+    ],
 
-    plugins : [
-            'karma-chrome-launcher',
-            'karma-firefox-launcher',
-            'karma-jasmine',
-            'karma-junit-reporter'
-            ],
+    singleRun: true,
 
-    junitReporter : {
-      outputFile: 'test_out/unit.xml',
-      suite: 'unit'
-    }
+    // Configure code coverage reporter
+    coverageReporter: {
+      dir: 'build/coverage/',
+      type: 'html'
+    },
 
+    webpack: webpackConfig
   });
 };
