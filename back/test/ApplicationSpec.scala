@@ -1,18 +1,17 @@
-import javax.inject.Inject
-import scala.util.Properties
-
 import models._
 import models.JsonFormats._
 import org.junit.runner._
 import org.specs2.runner._
 import play.api.Configuration
 import play.api.inject.guice.GuiceApplicationBuilder
+import play.api.libs.concurrent.Execution.Implicits._
 import play.api.libs.json.Json
 import play.api.libs.ws.WS
 import play.api.test._
-import play.modules.reactivemongo.{DefaultReactiveMongoApi, ReactiveMongoApi}
+import play.modules.reactivemongo.ReactiveMongoApi
 import play.modules.reactivemongo.json.collection.JSONCollection
-import play.api.libs.concurrent.Execution.Implicits._
+
+import scala.util.Properties
 
 /**
  * Add your spec here.
@@ -22,7 +21,7 @@ import play.api.libs.concurrent.Execution.Implicits._
 @RunWith(classOf[JUnitRunner])
 class ApplicationSpec extends PlaySpecification {
 
-  val mongoConnection = Properties.envOrElse("MONGO_CONNECTION_STRING", "mongodb://localhost:27017/sample-test" )
+  val mongoConnection = Properties.envOrElse("MONGO_CONNECTION_STRING", "mongodb://localhost:27017/sample-test")
 
   val app = new GuiceApplicationBuilder()
     .configure(Configuration("mongodb.uri" -> mongoConnection))

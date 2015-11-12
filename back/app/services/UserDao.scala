@@ -2,26 +2,21 @@ package services
 
 import javax.inject.Inject
 
-import models.User
 import models.JsonFormats._
-import reactivemongo.api.ReadPreference
-
-
-import scala.concurrent.{ ExecutionContext, Future }
-
+import models.User
 import play.api.libs.json.Json
-
-
 import play.modules.reactivemongo.ReactiveMongoApi
-import play.modules.reactivemongo.json.collection.JSONCollection
-
+import play.modules.reactivemongo.json.collection.{JSONCollection, _}
+import reactivemongo.api.ReadPreference
 import reactivemongo.api.commands.WriteResult
 
-import play.modules.reactivemongo.json.collection._
+import scala.concurrent.{ExecutionContext, Future}
 
-class UserDao @Inject()(reactiveMongoApi: ReactiveMongoApi)  {
+class UserDao @Inject()(reactiveMongoApi: ReactiveMongoApi) {
   // BSON-JSON conversions
+
   import play.modules.reactivemongo.json._
+
   protected def collection =
     reactiveMongoApi.db.collection[JSONCollection]("persons")
 
@@ -32,7 +27,7 @@ class UserDao @Inject()(reactiveMongoApi: ReactiveMongoApi)  {
       .cursor[User](ReadPreference.primary)
       .collect[List]()
 
-  def insert(user: User)(implicit ec: ExecutionContext) : Future[WriteResult] = {
+  def insert(user: User)(implicit ec: ExecutionContext): Future[WriteResult] = {
     collection.insert(user)
   }
 

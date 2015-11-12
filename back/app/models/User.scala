@@ -2,8 +2,6 @@
 
 package models
 
-import play.api.libs.json.{Reads, Writes}
-
 case class User(
                  age: Int,
                  firstName: String,
@@ -15,6 +13,7 @@ case class Feed(
                  url: String)
 
 object JsonFormats {
+
   import play.api.libs.json.Json
 
 

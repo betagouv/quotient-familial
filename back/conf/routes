@@ -4,12 +4,12 @@
 
 
 # User management API
-GET         /api/users                   @controllers.Users.getAll
-POST        /api/users                   @controllers.Users.createFromJson
-POST        /api/users/sample            @controllers.Users.create
+GET         /api/users                    @controllers.Users.getAll
+POST        /api/users                    @controllers.Users.createFromJson
+POST        /api/users/sample             @controllers.Users.create
 
-GET         /api/users/:lastName         @controllers.Users.findByName(lastName: String)
+GET         /api/users/:lastName          @controllers.Users.findByName(lastName: String)
 
 
 # Quotien
-GET         /api/quotient-familial      @controllers.QuotientFamiliale.get
+GET         /api/quotient-familial        @controllers.QuotientFamiliale.get(numeroFiscal: String, referenceAvis: String)

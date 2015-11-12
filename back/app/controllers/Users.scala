@@ -80,18 +80,18 @@ class Users @Inject()(
     postRepo.findByLastName(lastName)
       .map(users => Ok(Json.toJson(users)))
       .recover {
-      case PrimaryUnavailableException => InternalServerError("Please install MongoDB")
-      case _ => InternalServerError("An error has occured")
-    }
+        case PrimaryUnavailableException => InternalServerError("Please install MongoDB")
+        case _ => InternalServerError("An error has occured")
+      }
   }
 
   def getAll = Action.async {
     postRepo.find()
       .map(users => Ok(Json.toJson(users)))
       .recover {
-      case PrimaryUnavailableException => InternalServerError("Please install MongoDB")
-      case _ => InternalServerError("An error has occured")
-    }
+        case PrimaryUnavailableException => InternalServerError("Please install MongoDB")
+        case _ => InternalServerError("An error has occured")
+      }
 
   }
 
