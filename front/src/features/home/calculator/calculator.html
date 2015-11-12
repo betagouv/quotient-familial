@@ -1,25 +1,93 @@
-<div class="container">
-<form>
-  <form>
-    <div class="form-group">
-      <label for="numeroFiscal">Numéro fiscal</label>
-      <input type="number" id="numeroFiscal" class="form-control" ng-model="numeroFiscal" placeholder="Numéro fiscal">
-    </div>
-    <div class="form-group">
-      <label for="referenceAvis">Référence d'avis</label>
-      <input type="number" id="referenceAvis" class="form-control" ng-model="referenceAvis" placeholder="Référence d'avis">
-    </div>
-    <button type="submit"
-            class="btn btn-default"
-            ng-click="calculator.getSvairInfo(numeroFiscal, referenceAvis)">
-            Récupérer le quotient familiale
-    </button>
-  </form>
 
-  <div ng-show="calculator.revenuFiscalReference">
-    <input type="number" ng-model="calculator.revenuFiscalReference" ng-change="calculator.calculateQuotientFamiliale()"> /
-    <input type="number" ng-model="calculator.nombreParts" ng-change="calculator.calculateQuotientFamiliale()"> /
-    <input type="number" ng-model="calculator.monthDivider" ng-change="calculator.calculateQuotientFamiliale()"> =
-    <input type="number" ng-model="calculator.quotientFamilial" disabled>
+    <md-toolbar class="md-default">
+    <div class="md-toolbar-tools">
+      <h1 class="md-flex">Calculateur de Quotient familial</h1>
+    </div>
+  </md-toolbar>
+  <md-content flex layout-padding>
+    <div layout="row">
+      <div flex="30">
+        <md-card>
+          <md-card-content>
+            <form>
+              <div layout layout-sm="column">
+                <md-input-container flex>
+                  <label>Numéro fiscal</label>
+                  <input ng-model="numeroFiscal">
+                </md-input-container>
+              </div>
+              <div layout layout-sm="column">
+                <md-input-container flex>
+                  <label>Référence d'avis</label>
+                  <input ng-model="referenceAvis">
+                </md-input-container>
+              </div>
+
+              <md-button
+              class="md-raised md-primary"
+              ng-click="calculator.getSvairInfo(numeroFiscal, referenceAvis)">
+              Récupérer le quotient familial</md-button>
+
+            </form>
+          </md-card-content>
+        </md-card>
+      </div>
+      <div flex="30" flex-offset="5">
+
+        <div layout="row">
+          <div flex>
+            <div layout layout-sm="column">
+              <md-input-container flex>
+                <label>Revenu Fiscal de Référence</label>
+                <input ng-model="calculator.revenuFiscalReference"
+                      ng-change="calculator.calculateQuotientFamiliale()">
+              </md-input-container>
+            </div>
+          </div>
+        </div>
+        <div layout="row">
+          <div flex>
+            <div layout layout-sm="column">
+              <md-input-container flex>
+                <label>Nombres de Part</label>
+                <input ng-model="calculator.nombreParts"
+                      ng-change="calculator.calculateQuotientFamiliale()">
+                </md-input-container>
+            </div>
+          </div>
+          <div flex="10">
+            *
+          </div>
+
+          <div flex>
+              <div layout layout-sm="column">
+                <md-input-container flex>
+                  <label>Nombres de Mois</label>
+                  <input ng-model="calculator.monthDivider"
+                        ng-change="calculator.calculateQuotientFamiliale()">
+                </md-input-container>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div flex="5">=</div>
+
+      <div flex="20">
+        <div layout layout-sm="column">
+          <md-input-container flex>
+            <label>Quotient Familial</label>
+            <input ng-model="calculator.quotientFamilial"
+                  ng-change="calculator.calculateQuotientFamiliale()" disabled>
+          </md-input-container>
+        </div>
+      </div>
+
+    </div>
+  </md-content>
+
+
   </div>
+
+
+
 </div>
