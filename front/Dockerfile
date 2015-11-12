@@ -2,16 +2,16 @@ FROM        node:4.2-wheezy
 
 MAINTAINER  Thibaut Géry
 
-RUN mkdir -p /var/www/app && mkdir -p /root/front
+RUN mkdir -p /var/www/qf && mkdir -p /root/front
 
 COPY ./ /root/front
 
 WORKDIR /root/front
 
-RUN npm install && npm run build
+RUN npm install --production && npm run build
 
-RUN cp -r /root/front/dist/* /var/www/app/
+RUN cp -r /root/front/dist/* /var/www/qf/
 
-VOLUME /var/www/app
+VOLUME /var/www/qf
 
 CMD sh

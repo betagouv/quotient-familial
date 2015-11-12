@@ -1,7 +1,7 @@
 server {
         listen   80;
 
-        root /var/www/app;
+        root /var/www/qf;
         index index.html;
 
         server_name example.com;
