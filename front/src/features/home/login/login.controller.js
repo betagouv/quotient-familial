@@ -7,7 +7,6 @@ export default class LoginController {
   login(user) {
     const token = this.hashCode(user.name+user.password);
     this.$cookies.put('API-TOKEN', token)
-    console.log('API-TOKEN', token)
     this.$location.path('/admin')
   }
 

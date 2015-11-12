@@ -3,7 +3,7 @@ var webpackConfig = require('./webpack.test');
 // Reference: http://karma-runner.github.io/0.12/config/configuration-file.html
 module.exports = function karmaConfig (config) {
   config.set({
-    frameworks: [ 'jasmine-ajax', 'jasmine'],
+    frameworks: [ 'jasmine'],
 
     reporters: [
       // Reference: https://github.com/mlex/karma-spec-reporter
