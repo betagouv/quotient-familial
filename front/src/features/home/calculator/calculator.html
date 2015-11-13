@@ -22,12 +22,18 @@
                   <input ng-model="referenceAvis">
                 </md-input-container>
               </div>
-
-              <md-button
-              class="md-raised md-primary"
-              ng-click="calculator.getSvairInfo(numeroFiscal, referenceAvis)">
-              Récupérer le quotient familial</md-button>
-
+              <div layout="row">
+                <md-button flex="80"
+                class="md-raised md-primary"
+                ng-click="calculator.getSvairInfo(numeroFiscal, referenceAvis)">
+                Récupérer le quotient familial</md-button>
+                <div layout="row" layout-sm="column" layout-align="space-around" flex="20">
+                  <md-progress-circular
+                                        md-mode="indeterminate"
+                                        ng-show="calculator.requestPending">
+                  </md-progress-circular>
+                </div>
+              </div>
             </form>
           </md-card-content>
         </md-card>
