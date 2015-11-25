@@ -5,7 +5,7 @@ case class Declaration(
                         declarant2: Declarant,
                         dateRecouvrement: String,
                         dateEtablissement: String,
-                        nombreParts: Int,
+                        nombreParts: Float,
                         situationFamille: String,
                         nombrePersonnesCharge: Int,
                         revenuBrutGlobal: Int,
