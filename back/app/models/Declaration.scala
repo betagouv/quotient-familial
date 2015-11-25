@@ -10,8 +10,8 @@ case class Declaration(
                         nombrePersonnesCharge: Int,
                         revenuBrutGlobal: Int,
                         revenuImposable: Int,
-                        impotRevenuNetAvantCorrections: Int,
-                        montantImpot: Int,
+                        impotRevenuNetAvantCorrections: Option[Int],
+                        montantImpot: Option[Int],
                         revenuFiscalReference: Int,
                         anneeImpots: String,
                         anneeRevenus: String

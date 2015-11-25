@@ -37,8 +37,8 @@ class SvairServiceTest extends Specification {
     2,
     50000,
     50000,
-    50000,
-    6000,
+    Some(50000),
+    Some(6000),
     6000,
     "2015",
     "2014"
