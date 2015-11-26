@@ -47,6 +47,54 @@
         </md-content>
         <md-progress-linear md-mode="indeterminate" ng-show="calculator.requestPending"></md-progress-linear>
       </section>
+      <section class="content-section md-whiteframe-z1" ng-show="calculator.declarant1.nom">
+        <md-toolbar class="md-primary">
+          <div class="md-toolbar-tools">
+            <h2 class="md-flex">Informations personnelles</h2>
+          </div>
+        </md-toolbar>
+        <md-content class="calcul">
+          <div layout=row layout-align="center center">
+            <div layout layout-sm="column">
+              <md-input-container flex>
+                <label>Revenu Fiscal de Référence</label>
+                <input ng-model="calculator.revenuFiscalReference"
+                  ng-change="calculator.calculateQuotientFamiliale()">
+              </md-input-container>
+            </div>
+            <span>/</span>
+            <span>(</span>
+            <div layout layout-sm="column">
+              <md-input-container flex>
+                <label>Nombres de Part</label>
+                <input ng-model="calculator.nombreParts"
+                  ng-change="calculator.calculateQuotientFamiliale()">
+                </md-input-container>
+            </div>
+            <span>x</span>
+
+            <div layout layout-sm="column">
+              <md-input-container flex>
+                <label>Nombres de Mois</label>
+                <input ng-model="calculator.monthDivider"
+                  ng-change="calculator.calculateQuotientFamiliale()">
+              </md-input-container>
+            </div>
+            <span>)</span>
+
+          </div>
+          <div layout=row layout-align="center center">
+            <span>=</span>
+            <div layout layout-sm="column">
+              <md-input-container flex>
+                <label>Quotient Familial</label>
+                <input ng-model="calculator.quotientFamilial"
+                      ng-change="calculator.calculateQuotientFamiliale()" disabled>
+              </md-input-container>
+            </div>
+          </div>
+        </md-content>
+      </section>
 
       <section class="content-section md-whiteframe-z1" ng-show="calculator.declarant1.nom">
         <md-toolbar class="md-primary">
