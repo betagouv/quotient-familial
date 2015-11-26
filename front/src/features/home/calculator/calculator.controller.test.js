@@ -30,13 +30,19 @@ describe('Controller: Calculator', function() {
         then(callback) {
           callback({
             revenuFiscalReference: 24000,
-            nombreParts: 2
+            nombreParts: 2,
+            declarant1: {nom: 'toto'},
+            declarant2: {nom: 'tata'}
+
           })
         }});
+        ctrl = $controller("CalculatorController");
         ctrl.getSvairInfo(1, 2);
         expect(ctrl.quotientFamilial).toEqual(1000)
         expect(ctrl.revenuFiscalReference).toEqual(24000)
         expect(ctrl.nombreParts).toEqual(2)
+        //expect(ctrl.declarant1).toEqual({nom: 'toto'})
+        //expect(ctrl.declarant2).toEqual({nom: 'tata'})
         expect(SvairService.declaration).toHaveBeenCalledWith(1, 2)
       })
 

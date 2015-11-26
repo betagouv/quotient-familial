@@ -1,0 +1,17 @@
+.calcul span {
+  padding-right: 5px;
+  padding-left: 5px;
+  color: grey;
+}
+
+.calcul input[readonly] {
+  background-color: rgba(218, 217, 217, 0.14);
+}
+
+.main-content {
+  max-width: 864px;
+}
+
+.content-section {
+  margin: 20px;
+}

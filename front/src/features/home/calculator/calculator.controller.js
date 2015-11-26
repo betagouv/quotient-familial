@@ -12,6 +12,10 @@ export default class CalculatorController {
       this.nombreParts = data.nombreParts
       this.revenuFiscalReference = data.revenuFiscalReference
       this.calculateQuotientFamiliale()
+      this.declarant1 = data.declarant1
+      this.declarant2 = data.declarant2
+      this.situationFamille = data.situationFamille
+      this.aPayeDesImpots = data.montantImpot != null ? "Oui" : "Non"
       this.requestPending = false;
     }).catch(() => {
       this.$mdToast.simple()
