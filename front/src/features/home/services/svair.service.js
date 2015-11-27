@@ -21,6 +21,24 @@ class SvairService {
     });
     return deferred.promise;
   }
+
+  adress(numeroFiscal, referenceAvis) {
+    let url = '/api/adress';
+    let deferred = this.$q.defer();
+    this.$http({
+      method: 'GET',
+      params: {
+        numeroFiscal: numeroFiscal,
+        referenceAvis: referenceAvis
+      },
+      url: url,
+    }).then((response) => {
+      deferred.resolve(response.data)
+    }, (err) => {
+      deferred.reject(err)
+    });
+    return deferred.promise;
+  }
 }
 
 SvairService.$inject = ['$http', '$q'];

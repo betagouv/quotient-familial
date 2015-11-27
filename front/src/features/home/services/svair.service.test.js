@@ -53,4 +53,35 @@ describe('Service: Svair', function() {
       $httpBackend.flush();
     });
   })
+
+  describe('getting a adress', () => {
+    it('retreive the adress', (done) => {
+      var adress = {
+          "declarant1": {
+              "nom": "GERY",
+              "nomNaissance": "GERY",
+              "prenoms": "THIBAUT",
+              "dateNaissance": "29/03/1990"
+          },
+          "declarant2": {
+              "nom": "",
+              "nomNaissance": "",
+              "prenoms": "",
+              "dateNaissance": ""
+          },
+          adresses: []
+      }
+
+      $httpBackend.expectGET("/api/adress?numeroFiscal=1&referenceAvis=2").respond(200, adress)
+      var promise = SvairService.adress(1, 2);
+      promise.then((result) => {
+        expect(result).toEqual(adress)
+        done();
+      }, (err) => {
+        expect("error" + err).toBeUndefined();
+        done(err);
+      })
+      $httpBackend.flush();
+    });
+  })
 });
