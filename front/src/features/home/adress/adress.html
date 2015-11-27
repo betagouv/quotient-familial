@@ -56,19 +56,21 @@
         <md-content>
           <div layout="row">
             <div flex=70>
+              <leaflet height="400" width="500"  ></leaflet>
             </div>
             <div flex=30>
-              <md-list>
-                <md-list-item ng-repeat="item in adress.adresses" class="adress-item">
-                  <i class="fa fa-map-marker fa-2x md-avatar"></i>
-                  <div class="md-list-item-text" layout="column">
-                    <p>{{ item.adresse.name }}</p>
-                    <p>{{ item.adresse.citycode }}, {{ item.adresse.city }}</p>
-                  </div>
-                </md-list-item>
-              </md-list>
+                <md-list>
+                  <md-list-item ng-repeat="item in adress.adresses" class="adress-item">
+                    <i class="fa fa-map-marker fa-2x md-avatar"></i>
+                    <div class="md-list-item-text" layout="column">
+                      <p>{{ item.adresse.name }}</p>
+                      <p>{{ item.adresse.citycode }}, {{ item.adresse.city }}</p>
+                    </div>
+                  </md-list-item>
+                </md-list>
             </div>
           </div>
+
 
         </md-content>
       </section>

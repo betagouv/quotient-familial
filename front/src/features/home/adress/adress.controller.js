@@ -3,6 +3,11 @@ export default class AdressController {
     this.svairService = SvairService;
     this.requestPending = false;
     this.$mdToast = $mdToast;
+    this.lfCenter = {
+        lat: 51.505,
+        lng: -0.09,
+        zoom: 8
+    }
   }
 
   getAdresses(numeroFiscal, referenceAvis) {
