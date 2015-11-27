@@ -10,7 +10,7 @@ import play.api.libs.ws._
 
 import scala.concurrent.Future
 
-class SvairService(ws: WSClient, baseUrl: String, apiKey: String) {
+class ApiParticulierService(ws: WSClient, baseUrl: String, apiKey: String) {
 
   @Inject def this(ws: WSClient) =
     this(
