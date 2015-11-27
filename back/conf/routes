@@ -5,3 +5,4 @@
 
 # Impots
 GET         /api/quotient-familial        @controllers.QuotientFamiliale.get(numeroFiscal: String, referenceAvis: String)
+GET         /api/adress                   @controllers.Adress.get(numeroFiscal: String, referenceAvis: String)

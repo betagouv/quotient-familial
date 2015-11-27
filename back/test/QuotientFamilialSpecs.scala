@@ -39,6 +39,29 @@ class QuotientFamilialSpecs extends PlaySpecification {
     "2015",
     "2014"
   )
+  val adress = JsObject(Seq(
+    "name" -> JsString("Watership Down"),
+    "location" -> JsObject(Seq("lat" -> JsNumber(51.235685), "long" -> JsNumber(-1.309197))),
+    "residents" -> JsArray(Seq(
+      JsObject(Seq(
+        "name" -> JsString("Fiver"),
+        "age" -> JsNumber(4),
+        "role" -> JsNull
+      )),
+      JsObject(Seq(
+        "name" -> JsString("Bigwig"),
+        "age" -> JsNumber(6),
+        "role" -> JsString("Owsla")
+      ))
+    ))
+  ))
+
+  def getAppFromPortMock(portMock: Port) = {
+    val apiPartUrl = "http://localhost:" + portMock
+    val app = new GuiceApplicationBuilder()
+      .configure("apiparticulier.host" -> apiPartUrl)
+      .build()
+  }
 
   "The quotient familial API" should {
 
@@ -56,6 +79,27 @@ class QuotientFamilialSpecs extends PlaySpecification {
           val response: WSResponse = await(WS.url("http://localhost:" + port + "/api/quotient-familial?numeroFiscal=3&referenceAvis=4").get())
           response.status must equalTo(Status.OK)
           response.body must contain("Catherine")
+        }
+      }
+    }
+  }
+
+  "The adress API" should {
+
+    "return the adress when asked" in {
+      Server.withRouter() {
+        case _ => Action {
+          Results.Ok(adress)
+        }
+      } { implicit portMock =>
+        val apiPartUrl = "http://localhost:" + portMock
+        val app = new GuiceApplicationBuilder()
+          .configure("apiparticulier.host" -> apiPartUrl)
+          .build()
+        new WithServer(app) {
+          val response: WSResponse = await(WS.url("http://localhost:" + port + "/api/adress?numeroFiscal=3&referenceAvis=4").get())
+          response.status must equalTo(Status.OK)
+          response.body must contain("Watership Down")
         }
       }
     }

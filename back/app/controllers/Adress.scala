@@ -9,12 +9,12 @@ import play.api.mvc.{Action, Controller}
 import services.ApiParticulierService
 
 
-class QuotientFamiliale @Inject()(val apiParticulier: ApiParticulierService) extends Controller {
+class Adress @Inject()(val apiParticulier: ApiParticulierService) extends Controller {
 
   def get(numeroFiscal: String, referenceAvis: String) = Action.async {
-    apiParticulier.declaration(numeroFiscal, referenceAvis)
+    apiParticulier.adress(numeroFiscal, referenceAvis)
       .map {
-        case Some(a) => Ok(Json.toJson(a))
+        case Some(a) => Ok(a)
         case None => NotFound(Json.obj("error" -> "justificatif d'impots non trouvé"))
       }
       .recover {
