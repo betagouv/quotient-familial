@@ -8,6 +8,12 @@ export default function routes($stateProvider) {
       controller: 'CalculatorController',
       controllerAs: 'calculator'
     })
+    .state('adress', {
+      url: '/adress',
+      template: "",
+      controller: 'AdressController',
+      controllerAs: 'adress'
+    })
     .state('home.login', {
       url: '/login',
       template: require('./login/login.html'),
