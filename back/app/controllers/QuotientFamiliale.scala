@@ -5,10 +5,8 @@ import javax.inject.Inject
 import models.JsonDeclarationFormats._
 import play.api.libs.concurrent.Execution.Implicits.defaultContext
 import play.api.libs.json._
-import play.api.mvc.{Action, Controller, Result}
+import play.api.mvc.{Action, Controller}
 import services.ApiParticulierService
-
-import scala.concurrent.Future
 
 
 class QuotientFamiliale @Inject()(val qfService: ApiParticulierService) extends Controller {

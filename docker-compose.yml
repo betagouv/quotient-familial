@@ -2,18 +2,6 @@ app:
   build: back
   ports:
     - 9001:9000
-  links:
-    - db:mongo
-  environment:
-    - MONGO_CONNECTION_STRING=mongodb://mongo:27017/sample
-
-
-db:
-  image: mongo:3.1.8
-  volumes:
-    - data:/data/db
-  ports:
-    - 28017:27017
 
 front:
   build: front

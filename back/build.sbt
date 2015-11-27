@@ -14,7 +14,6 @@ libraryDependencies ++= Seq(
   cache,
   ws,
   specs2 % Test,
-  "org.reactivemongo" %% "play2-reactivemongo" % "0.11.7.play24",
   "de.leanovate.play-mockws" %% "play-mockws" % "2.4.1" % "test"
 
 )

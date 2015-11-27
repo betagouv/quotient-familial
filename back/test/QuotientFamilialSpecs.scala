@@ -1,20 +1,14 @@
 import models.JsonDeclarationFormats._
 import models.{Declarant, Declaration}
 import org.junit.runner.RunWith
-import org.specs2.mutable.Specification
 import org.specs2.runner.JUnitRunner
-import play.api.Configuration
+import play.api.http.Status
 import play.api.inject.guice.GuiceApplicationBuilder
 import play.api.libs.json._
-import play.api.libs.ws.{WSResponse, WS}
+import play.api.libs.ws.{WS, WSResponse}
 import play.api.mvc._
-import play.api.test
-import play.api.routing.sird._
 import play.api.test._
-import play.api.mvc._
-import play.api.libs.json._
 import play.core.server.Server
-import play.api.http.Status
 
 @RunWith(classOf[JUnitRunner])
 class QuotientFamilialSpecs extends PlaySpecification {
@@ -57,7 +51,7 @@ class QuotientFamilialSpecs extends PlaySpecification {
         val apiPartUrl = "http://localhost:" + portMock
         val app = new GuiceApplicationBuilder()
           .configure("apiparticulier.host" -> apiPartUrl)
-        .build()
+          .build()
         new WithServer(app) {
           val response: WSResponse = await(WS.url("http://localhost:" + port + "/api/quotient-familial?numeroFiscal=3&referenceAvis=4").get())
           response.status must equalTo(Status.OK)

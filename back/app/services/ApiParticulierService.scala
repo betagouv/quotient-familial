@@ -20,17 +20,15 @@ class ApiParticulierService(ws: WSClient, baseUrl: String, apiKey: String) {
       application.configuration.getString("apiparticulier.key"))
 
 
-
-  def declaration(numeroFiscal: String, referenceAvis: String): Future[Option[Declaration]] =
-    {
-      svairRequest(numeroFiscal, referenceAvis).get().map {
-        response =>
-          response.status match {
-            case 404 => None
-            case 200 => response.json.validate[Declaration].asOpt
-          }
-      }
+  def declaration(numeroFiscal: String, referenceAvis: String): Future[Option[Declaration]] = {
+    svairRequest(numeroFiscal, referenceAvis).get().map {
+      response =>
+        response.status match {
+          case 404 => None
+          case 200 => response.json.validate[Declaration].asOpt
+        }
     }
+  }
 
   private def svairRequest(numeroFiscal: String, referenceAvis: String): WSRequest = ws
     .url(baseUrl + "/api/impots/svair")
@@ -39,8 +37,7 @@ class ApiParticulierService(ws: WSClient, baseUrl: String, apiKey: String) {
     .withQueryString("numeroFiscal" -> numeroFiscal)
     .withQueryString("referenceAvis" -> referenceAvis)
 
-  def adress(numeroFiscal: String, referenceAvis: String): Future[Option[JsValue]] =
-  {
+  def adress(numeroFiscal: String, referenceAvis: String): Future[Option[JsValue]] = {
     adressRequest(numeroFiscal, referenceAvis).get().map {
       response =>
         response.status match {
