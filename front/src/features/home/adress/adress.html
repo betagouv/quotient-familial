@@ -1,0 +1,77 @@
+<md-toolbar class="md-primary md-hue-2">
+  <div class="md-toolbar-tools">
+    <h1 class="md-flex">Localisateur de foyer fiscal</h1>
+  </div>
+</md-toolbar>
+<div layout="row" layout-align="center center">
+  <md-content flex layout-padding class="main-content">
+    <div layout="column">
+      <section class="content-section md-whiteframe-z1">
+        <md-toolbar class="md-primary">
+          <div class="md-toolbar-tools">
+            <h2 class="md-flex">Informations fiscales</h2>
+          </div>
+        </md-toolbar>
+        <md-content layout-padding>
+          <form>
+            <div layout="column">
+              <div flex>
+                <div layout="row">
+                  <div flex=30>
+                    <div layout layout-sm="column">
+                      <md-input-container flex>
+                        <label>Numéro fiscal</label>
+                        <input ng-model="numeroFiscal">
+                      </md-input-container>
+                    </div>
+                  </div>
+                  <div flex=30 flex-offset="20">
+                    <div layout layout-sm="column">
+                      <md-input-container flex>
+                        <label>Référence d'avis</label>
+                        <input ng-model="referenceAvis">
+                      </md-input-container>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div flex>
+                <md-button
+                  class="md-raised md-primary"
+                  ng-click="adress.getAdresses(numeroFiscal, referenceAvis)">
+                  Récupérer le quotient familial
+                </md-button>
+              </div>
+            </div>
+          </form>
+        </md-content>
+        <md-progress-linear md-mode="indeterminate" ng-show="adress.requestPending"></md-progress-linear>
+      </section>
+      <section class="content-section md-whiteframe-z1" ng-show="adress.adresses">
+        <md-toolbar class="md-primary">
+          <div class="md-toolbar-tools">
+            <h2 class="md-flex">Adress</h2>
+          </div>
+        </md-toolbar>
+        <md-content>
+          <div layout="row">
+            <div flex=70>
+            </div>
+            <div flex=30>
+              <md-list>
+                <md-list-item ng-repeat="item in adress.adresses" class="adress-item">
+                  <i class="fa fa-map-marker fa-2x md-avatar"></i>
+                  <div class="md-list-item-text" layout="column">
+                    <p>{{ item.adresse.name }}</p>
+                    <p>{{ item.adresse.citycode }}, {{ item.adresse.city }}</p>
+                  </div>
+                </md-list-item>
+              </md-list>
+            </div>
+          </div>
+
+        </md-content>
+      </section>
+    </div>
+  </md-content>
+</div>

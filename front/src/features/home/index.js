@@ -6,6 +6,7 @@ import angularCookies from 'angular-cookies';
 
 import angularMaterial from 'angular-material';
 
+require('font-awesome/css/font-awesome.css');
 
 import svairService from './services/svair.service';
 

@@ -10,7 +10,7 @@ export default function routes($stateProvider) {
     })
     .state('adress', {
       url: '/adress',
-      template: "",
+      template: require('./adress/adress.html'),
       controller: 'AdressController',
       controllerAs: 'adress'
     })
