@@ -7,7 +7,7 @@ import angularCookies from 'angular-cookies';
 import angularMaterial from 'angular-material';
 
 
-import svairService from './calculator/svair.service';
+import svairService from './services/svair.service';
 
 import routing from './home.routes';
 import CalculatorController from './calculator/calculator.controller';
