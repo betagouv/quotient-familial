@@ -36,12 +36,12 @@ export default class AdressController {
         })
       }
 
-    })/*.catch(() => {
+    }).catch(() => {
       this.$mdToast.simple()
         .content('Can\'t get your credencial')
         .hideDelay(3000)
       this.requestPending = false;
-    })*/
+    })
   }
 }
 
