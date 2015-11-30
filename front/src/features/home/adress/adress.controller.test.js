@@ -29,7 +29,19 @@ describe('Controller: adress', function() {
         spyOn(SvairService, 'adress').and.returnValue({
           then(callback) {
             callback({
-              adresses:  ["add1", "add2"],
+              adresses:  [
+                {
+                  adresse: {
+                    label: "label"
+                  },
+                  geometry: {
+                    coordinates: [
+                      2.455,
+                      54.344
+                    ]
+                  }
+                }
+              ],
               declarant1: {nom: 'toto'},
               declarant2: {nom: 'tata'}
 
@@ -41,9 +53,17 @@ describe('Controller: adress', function() {
           }
         });
         ctrl.getAdresses(1, 2);
-        expect(ctrl.adresses).toEqual(["add1", "add2"])
         expect(ctrl.declarant1).toEqual({nom: 'toto'})
         expect(ctrl.declarant2).toEqual({nom: 'tata'})
+        expect(ctrl.lfCenter.lng).toEqual(2.455)
+        expect(ctrl.lfCenter.lat).toEqual(54.344)
+        expect(ctrl.lfCenter.zoom).toEqual(14)
+        expect(ctrl.lfMarkers.length).toEqual(1)
+        expect(ctrl.lfMarkers[0].lng).toEqual(2.455)
+        expect(ctrl.lfMarkers[0].lat).toEqual(54.344)
+        expect(ctrl.lfMarkers[0].message).toEqual("label")
+        expect(ctrl.lfMarkers[0].focus).toEqual(true)
+        expect(ctrl.lfMarkers[0].draggable).toEqual(false)
         expect(SvairService.adress).toHaveBeenCalledWith(1, 2)
       })
 
@@ -53,7 +73,8 @@ describe('Controller: adress', function() {
             expect(ctrl.requestPending).toBe(true);
             callback({
               revenuFiscalReference: 24000,
-              nombreParts: 2
+              nombreParts: 2,
+              adresses: []
             })
             return {
               catch: function() {

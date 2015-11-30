@@ -4,9 +4,9 @@ export default class AdressController {
     this.requestPending = false;
     this.$mdToast = $mdToast;
     this.lfCenter = {
-        lat: 51.505,
-        lng: -0.09,
-        zoom: 8
+        lat: 0,
+        lng: 0,
+        zoom: 10
     }
   }
 
@@ -17,6 +17,25 @@ export default class AdressController {
       this.declarant1 = data.declarant1
       this.declarant2 = data.declarant2
       this.requestPending = false;
+      if(data.adresses.length > 0) {
+        const gps = data.adresses[0].geometry.coordinates
+        this.lfCenter = {
+            lat: gps[1],
+            lng: gps[0],
+            zoom: 14
+        }
+        this.lfMarkers = data.adresses.map((item) => {
+          const gps = item.geometry.coordinates
+          return {
+                    lat: gps[1],
+                    lng: gps[0],
+                    message: item.adresse.label,
+                    focus: true,
+                    draggable: false,
+                }
+        })
+      }
+
     })/*.catch(() => {
       this.$mdToast.simple()
         .content('Can\'t get your credencial')

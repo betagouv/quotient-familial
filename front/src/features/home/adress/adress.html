@@ -39,7 +39,7 @@
                 <md-button
                   class="md-raised md-primary"
                   ng-click="adress.getAdresses(numeroFiscal, referenceAvis)">
-                  Récupérer le quotient familial
+                  Récupérer l'adresse
                 </md-button>
               </div>
             </div>
@@ -50,15 +50,16 @@
       <section class="content-section md-whiteframe-z1" ng-show="adress.adresses">
         <md-toolbar class="md-primary">
           <div class="md-toolbar-tools">
-            <h2 class="md-flex">Adress</h2>
+            <h2 class="md-flex">Adresses</h2>
           </div>
         </md-toolbar>
         <md-content>
-          <div layout="row">
-            <div flex=70>
-              <leaflet height="400" width="500"  ></leaflet>
+          <div>
+            <div>
+              <leaflet markers="adress.lfMarkers" center="adress.lfCenter" height="400" width="500"  ></leaflet>
+
             </div>
-            <div flex=30>
+            <div>
                 <md-list>
                   <md-list-item ng-repeat="item in adress.adresses" class="adress-item">
                     <i class="fa fa-map-marker fa-2x md-avatar"></i>
@@ -68,12 +69,37 @@
                     </div>
                   </md-list-item>
                 </md-list>
+
             </div>
           </div>
 
 
         </md-content>
       </section>
+      <section class="content-section md-whiteframe-z1" ng-show="adress.declarant1.nom">
+        <md-toolbar class="md-primary">
+          <div class="md-toolbar-tools">
+            <h2 class="md-flex">Informations personnelles</h2>
+          </div>
+        </md-toolbar>
+        <md-content>
+          <md-list>
+            <md-list-item class="md-3-line">
+              <div class="md-list-item-text" layout="column">
+                <h3>{{ adress.declarant1.nom }} {{ adress.declarant1.prenoms }}</h3>
+                <p>{{ adress.declarant1.dateNaissance }}</p>
+              </div>
+            </md-list-item>
+            <md-list-item class="md-3-line" ng-show="adress.declarant2.nom">
+              <div class="md-list-item-text" layout="column">
+                <h3>{{ adress.declarant2.nom }} {{ adress.declarant2.prenoms }}</h3>
+                <p>{{ adress.declarant2.dateNaissance }}</p>
+              </div>
+            </md-list-item>
+          </md-list>
+        </md-content>
+      </section>
+
     </div>
   </md-content>
 </div>
