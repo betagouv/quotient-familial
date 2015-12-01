@@ -25,7 +25,7 @@ RUN         cd /tmp && \
 ADD         build.sbt /root/
 ADD         project/plugins.sbt /root/project/
 WORKDIR     /root
-RUN         /usr/local/activator/activator build
+RUN         /usr/local/activator/activator update
 
 
 # COMMIT PROJECT FILES
