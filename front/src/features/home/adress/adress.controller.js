@@ -16,6 +16,7 @@ export default class AdressController {
       this.adresses = data.adresses
       this.declarant1 = data.declarant1
       this.declarant2 = data.declarant2
+      this.foyerFiscal = data.foyerFiscal.adresse
       this.requestPending = false;
       if(data.adresses.length > 0) {
         const gps = data.adresses[0].geometry.coordinates

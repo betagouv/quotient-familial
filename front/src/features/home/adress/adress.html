@@ -47,25 +47,30 @@
         </md-content>
         <md-progress-linear md-mode="indeterminate" ng-show="adress.requestPending"></md-progress-linear>
       </section>
-      <section class="content-section md-whiteframe-z1" ng-show="adress.adresses">
+      <section class="content-section md-whiteframe-z1" ng-if="adress.adresses">
         <md-toolbar class="md-primary">
           <div class="md-toolbar-tools">
             <h2 class="md-flex">Adresses</h2>
           </div>
         </md-toolbar>
         <md-content>
-          <div>
-            <div>
+          <div layout layout-sm="column">
+            <md-input-container flex>
+              <label>Foyer Fiscal</label>
+              <input ng-model="adress.foyerFiscal" disabled="disabled">
+            </md-input-container>
+          </div>
+          <div layout="row">
+            <div flex=70>
               <leaflet markers="adress.lfMarkers" center="adress.lfCenter" height="400" width="500"  ></leaflet>
-
             </div>
-            <div>
+            <div flex="30">
                 <md-list>
                   <md-list-item ng-repeat="item in adress.adresses" class="adress-item">
                     <i class="fa fa-map-marker fa-2x md-avatar"></i>
                     <div class="md-list-item-text" layout="column">
                       <p>{{ item.adresse.name }}</p>
-                      <p>{{ item.adresse.citycode }}, {{ item.adresse.city }}</p>
+                      <p>{{ item.adresse.postcode }}, {{ item.adresse.city }}</p>
                     </div>
                   </md-list-item>
                 </md-list>
