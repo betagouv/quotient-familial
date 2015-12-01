@@ -37,7 +37,7 @@ ADD         project/plugins.sbt /root/project/
 ADD         project/build.properties /root/project/
 
 # BUILD THE PROJECT
-RUN         cd /root; /usr/local/activator/activator stage
+RUN         /usr/local/activator/activator stage
 
 
 # CONFIGURE IMAGE
