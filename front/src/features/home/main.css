@@ -19,3 +19,9 @@
 .adress-item:hover {
   background-color: rgba(218, 217, 217, 0.14);
 }
+
+
+.angular-leaflet-map {
+  width: 100%;
+  height: 500px;
+}
