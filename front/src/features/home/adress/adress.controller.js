@@ -53,6 +53,12 @@ export default class AdressController {
       item.active = false
     })
     this.adresses[index].active = true
+    const gps = this.adresses[index].geometry.coordinates
+    this.lfCenter = {
+        lat: gps[1],
+        lng: gps[0],
+        zoom: 14
+    }
   }
 }
 

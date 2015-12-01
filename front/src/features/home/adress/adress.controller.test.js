@@ -102,8 +102,8 @@ describe('Controller: adress', function() {
               },
               geometry: {
                 coordinates: [
-                  2.455,
-                  54.344
+                  2.456,
+                  54.345
                 ]
               },
               active: true
@@ -126,6 +126,8 @@ describe('Controller: adress', function() {
           ctrl.centerOnAdress(1)
           expect(ctrl.adresses[0].active).toEqual(false)
           expect(ctrl.adresses[1].active).toEqual(true)
+          expect(ctrl.lfCenter.lng).toEqual(2.455)
+          expect(ctrl.lfCenter.lat).toEqual(54.344)
         })
 
       })
