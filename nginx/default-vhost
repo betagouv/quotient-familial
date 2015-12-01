@@ -4,7 +4,7 @@ server {
         root /var/www/qf;
         index index.html;
 
-        server_name example.com;
+        server_name agents.sgmap.fr;
 
 
         location /api {
@@ -16,4 +16,11 @@ server {
 
          }
 
+}
+
+
+server {
+        listen   80;
+        server_name quotient-familial.sgmap.fr;
+        return 301 http://agents.sgmap.fr/#/quotient-familial;
 }
