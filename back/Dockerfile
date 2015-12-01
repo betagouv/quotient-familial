@@ -23,6 +23,7 @@ RUN         cd /tmp && \
 
 #ADD DEPENDENCIES
 ADD         build.sbt /root/
+ADD         project/plugins.sbt /root/project/
 RUN         cd /root; /usr/local/activator/activator build
 
 
