@@ -43,8 +43,10 @@ describe('Controller: adress', function() {
                 }
               ],
               declarant1: {nom: 'toto'},
-              declarant2: {nom: 'tata'}
-
+              declarant2: {nom: 'tata'},
+              foyerFiscal: {
+                adresse:"not formated adress"
+              }
             })
             return {
               catch: function() {
@@ -55,6 +57,8 @@ describe('Controller: adress', function() {
         ctrl.getAdresses(1, 2);
         expect(ctrl.declarant1).toEqual({nom: 'toto'})
         expect(ctrl.declarant2).toEqual({nom: 'tata'})
+        expect(ctrl.foyerFiscal).toEqual("not formated adress")
+        expect(ctrl.adresses[0].active).toEqual(true)
         expect(ctrl.lfCenter.lng).toEqual(2.455)
         expect(ctrl.lfCenter.lat).toEqual(54.344)
         expect(ctrl.lfCenter.zoom).toEqual(14)
@@ -74,7 +78,10 @@ describe('Controller: adress', function() {
             callback({
               revenuFiscalReference: 24000,
               nombreParts: 2,
-              adresses: []
+              adresses: [],
+              foyerFiscal: {
+                adresse:"not formated adress"
+              }
             })
             return {
               catch: function() {
@@ -86,6 +93,42 @@ describe('Controller: adress', function() {
         expect(ctrl.requestPending).not.toBe(true);
       })
 
+      describe('when clicking on another adress', () => {
+        beforeEach(() => {
+          ctrl.adresses = [
+            {
+              adresse: {
+                label: "label A"
+              },
+              geometry: {
+                coordinates: [
+                  2.455,
+                  54.344
+                ]
+              },
+              active: true
+            },
+            {
+              adresse: {
+                label: "label B"
+              },
+              geometry: {
+                coordinates: [
+                  2.455,
+                  54.344
+                ]
+              }
+            }
+          ]
+        })
+
+        it('disable active filter on all the item the one we clicked on', () => {
+          ctrl.centerOnAdress(1)
+          expect(ctrl.adresses[0].active).toEqual(false)
+          expect(ctrl.adresses[1].active).toEqual(true)
+        })
+
+      })
     })
   })
 

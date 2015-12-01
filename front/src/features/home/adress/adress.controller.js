@@ -35,6 +35,9 @@ export default class AdressController {
                     draggable: false,
                 }
         })
+        if(this.adresses.length > 0) {
+          this.adresses[0].active= true;
+        }
       }
 
     }).catch(() => {
@@ -43,6 +46,13 @@ export default class AdressController {
         .hideDelay(3000)
       this.requestPending = false;
     })
+  }
+
+  centerOnAdress(index) {
+    this.adresses.forEach((item) => {
+      item.active = false
+    })
+    this.adresses[index].active = true
   }
 }
 

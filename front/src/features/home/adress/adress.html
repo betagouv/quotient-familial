@@ -66,8 +66,12 @@
             </div>
             <div flex="30">
                 <md-list>
-                  <md-list-item ng-repeat="item in adress.adresses" class="adress-item">
-                    <i class="fa fa-map-marker fa-2x md-avatar"></i>
+                  <md-list-item
+                    ng-repeat="item in adress.adresses"
+                    class="adress-item"
+                    ng-click="adress.centerOnAdress($index)"
+                    ng-class="{active: item.active}">
+                    <i class="fa fa-map-marker fa-2x md-avatar" ></i>
                     <div class="md-list-item-text" layout="column">
                       <p>{{ item.adresse.name }}</p>
                       <p>{{ item.adresse.postcode }}, {{ item.adresse.city }}</p>
