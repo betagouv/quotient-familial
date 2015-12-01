@@ -33,8 +33,6 @@ ADD         app /root/app
 ADD         test /root/test
 ADD         conf /root/conf
 ADD         public /root/public
-ADD         build.sbt /root/
-ADD         project/plugins.sbt /root/project/
 ADD         project/build.properties /root/project/
 
 # BUILD THE PROJECT
