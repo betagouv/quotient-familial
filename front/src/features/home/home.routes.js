@@ -4,6 +4,10 @@ export default function routes($stateProvider) {
   $stateProvider
     .state('home', {
       url: '/',
+      template: require('./home.html')
+    })
+    .state('quotient-familial', {
+      url: '/quotient-familial',
       template: require('./calculator/calculator.html'),
       controller: 'CalculatorController',
       controllerAs: 'calculator'
@@ -13,11 +17,5 @@ export default function routes($stateProvider) {
       template: require('./adress/adress.html'),
       controller: 'AdressController',
       controllerAs: 'adress'
-    })
-    .state('home.login', {
-      url: '/login',
-      template: require('./login/login.html'),
-      controller: 'LoginController',
-      controllerAs: 'login'
     })
 }
