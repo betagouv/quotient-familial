@@ -120,6 +120,14 @@ describe('Controller: adress', function() {
               }
             }
           ]
+          ctrl.lfMarkers = [
+            {
+              focus: true
+            },
+            {
+              focus: false
+            }
+          ]
         })
 
         it('disable active filter on all the item the one we clicked on', () => {
@@ -130,7 +138,14 @@ describe('Controller: adress', function() {
           expect(ctrl.lfCenter.lat).toEqual(54.344)
         })
 
+        it('disable the current marker and show the one on which we clicked on', () => {
+          ctrl.centerOnAdress(1)
+          expect(ctrl.lfMarkers[0].focus).toEqual(false)
+          expect(ctrl.lfMarkers[1].focus).toEqual(true)
+        })
       })
+
+
     })
   })
 

@@ -31,12 +31,13 @@ export default class AdressController {
                     lat: gps[1],
                     lng: gps[0],
                     message: item.adresse.label,
-                    focus: true,
+                    focus: false,
                     draggable: false,
                 }
         })
         if(this.adresses.length > 0) {
           this.adresses[0].active= true;
+          this.lfMarkers[0].focus = true
         }
       }
 
@@ -52,7 +53,12 @@ export default class AdressController {
     this.adresses.forEach((item) => {
       item.active = false
     })
+    this.lfMarkers.forEach((item) => {
+      item.focus = false
+    })
     this.adresses[index].active = true
+    this.lfMarkers[index].focus = true
+
     const gps = this.adresses[index].geometry.coordinates
     this.lfCenter = {
         lat: gps[1],
