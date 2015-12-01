@@ -21,6 +21,11 @@ RUN         cd /tmp && \
             mv /usr/local/activator-dist-$ACTIVATOR_VERSION /usr/local/activator && \
             rm typesafe-activator-$ACTIVATOR_VERSION.zip
 
+#ADD DEPENDENCIES
+ADD         build.sbt /root/
+RUN         cd /root; /usr/local/activator/activator build
+
+
 # COMMIT PROJECT FILES
 ADD         app /root/app
 ADD         test /root/test

@@ -4,9 +4,13 @@ MAINTAINER  Thibaut Géry
 
 RUN mkdir -p /var/www/qf && mkdir -p /root/front
 
-COPY ./ /root/front
-
 WORKDIR /root/front
+
+COPY package.json /root/front
+
+RUN npm install --production
+
+COPY ./ /root/front
 
 RUN npm install --production && npm run build
 
