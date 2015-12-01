@@ -24,7 +24,8 @@ RUN         cd /tmp && \
 #ADD DEPENDENCIES
 ADD         build.sbt /root/
 ADD         project/plugins.sbt /root/project/
-RUN         cd /root; /usr/local/activator/activator build
+WORKDIR     /root
+RUN         /usr/local/activator/activator build
 
 
 # COMMIT PROJECT FILES
@@ -37,6 +38,7 @@ ADD         project/plugins.sbt /root/project/
 ADD         project/build.properties /root/project/
 
 # BUILD THE PROJECT
+WORKDIR     /root
 RUN         /usr/local/activator/activator stage
 
 
