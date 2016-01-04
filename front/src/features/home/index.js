@@ -19,9 +19,12 @@ import CalculatorController from './calculator/calculator.controller';
 import AdressController from './adress/adress.controller';
 
 import './main.css'
+import run from './run';
+
 
 export default angular.module('app.home', [uirouter, svairService, angularCookies, angularMaterial, 'nemLogging','ui-leaflet'])
   .config(routing)
   .controller('CalculatorController', CalculatorController)
   .controller('AdressController', AdressController)
+  .run(run)
   .name;
