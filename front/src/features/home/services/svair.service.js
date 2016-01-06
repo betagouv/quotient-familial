@@ -7,6 +7,7 @@ class SvairService {
   declaration(numeroFiscal, referenceAvis) {
     let url = '/api/quotient-familial';
     let deferred = this.$q.defer();
+    numeroFiscal = (numeroFiscal + "").slice(0, 13)
     this.$http({
       method: 'GET',
       params: {
